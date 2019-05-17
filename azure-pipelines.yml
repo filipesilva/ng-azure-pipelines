@@ -21,10 +21,17 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- script: |
-    npm install
-    npm run lint
-    npm test -- --configuration=ci
-    npm run e2e -- --configuration=ci
-    npm run build -- --prod
-  displayName: 'npm install, test and build'
+- script: npm install
+  displayName: 'Install dependencies'
+
+- script: npm run lint
+  displayName: 'Lint'
+
+- script: npm run build -- --prod
+  displayName: 'Build'
+
+- script: npm test -- --configuration=ci
+  displayName: 'Run unit tests'
+
+- script: npm run e2e -- --configuration=ci
+  displayName: 'Run e2e tests'
